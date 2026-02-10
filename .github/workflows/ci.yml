@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: ['**'] # All branches
+    branches: ['**']
   pull_request:
     branches: ['**']
 jobs:
@@ -9,21 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'  # Changed from '18' to '20'
           cache: 'npm'
           cache-dependency-path: './front-end/package-lock.json'
+      
       - name: Install dependencies
         working-directory: ./front-end
         run: npm ci
+      
       - name: Lint
         working-directory: ./front-end
         run: npm run lint
+      
       - name: Test
         working-directory: ./front-end
         run: npm test
+      
       - name: Build
         working-directory: ./front-end
         run: npm run build
