@@ -1,0 +1,14 @@
+{
+  "name": "parkmate-login-lambda",
+  "version": "1.0.0",
+  "description": "AWS Lambda function for ParkMate admin login",
+  "main": "loginFunction.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "scripts": {
+    "install-deps": "npm install",
+    "package": "zip -r function.zip . -x '*.git*' 'node_modules/.bin/*'"
+  }
+}

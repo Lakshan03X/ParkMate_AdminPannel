@@ -1,0 +1,11 @@
+{
+  "name": "parkmate-helper-scripts",
+  "version": "1.0.0",
+  "description": "Helper scripts for ParkMate admin setup",
+  "scripts": {
+    "generate-hash": "node generateHash.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
+}
