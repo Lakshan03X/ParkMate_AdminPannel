@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './components/Login';
 // import ProtectedRoute from './components/ProtectedRoute';
 // import { ROLES } from './utils/roleRoutes';
-import { authService } from './services/authService';
+import  authService  from './services/authService';
 
 // Import your dashboard components (create these based on your needs)
 // import SuperAdminDashboard from './components/dashboards/SuperAdminDashboard';
