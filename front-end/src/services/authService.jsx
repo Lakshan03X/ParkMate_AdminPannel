@@ -1,7 +1,27 @@
-// API Gateway endpoint - REPLACE THIS with your actual API Gateway URL after deployment
+
+/**
+ * API Gateway endpoint configuration
+ * TODO: Replace this URL with your actual API Gateway URL after AWS deployment
+ * 
+ * INSTRUCTIONS FOR AWS TEAM MEMBER:
+ * After deploying API Gateway, replace the URL below with your Invoke URL
+ * Example: 'https://abc123xyz.execute-api.us-east-1.amazonaws.com/prod'
+ */
 const API_ENDPOINT = 'https://your-api-id.execute-api.your-region.amazonaws.com/prod';
 
 class AuthService {
+  constructor() {
+    this.apiEndpoint = API_ENDPOINT;
+  }
+
+  /**
+   * Get API endpoint URL
+   * @returns {string} API endpoint
+   */
+  getApiUrl() {
+    return this.apiEndpoint;
+  }
+
   /**
    * Login user with email and password
    * @param {string} email - User email
@@ -10,7 +30,7 @@ class AuthService {
    */
   async login(email, password) {
     try {
-      const response = await fetch(`${API_ENDPOINT}/login`, {
+      const response = await fetch(`${this.apiEndpoint}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +121,7 @@ class AuthService {
       const token = this.getToken();
       if (!token) return false;
 
-      const response = await fetch(`${API_ENDPOINT}/verify`, {
+      const response = await fetch(`${this.apiEndpoint}/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,8 +137,5 @@ class AuthService {
   }
 }
 
-// Export singleton instance
-export const authService = new AuthService();
-
-// Export API endpoint for other services to use
-export { API_ENDPOINT };
+// Export singleton instance as default
+export default new AuthService();

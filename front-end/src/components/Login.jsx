@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { authService } from '../services/authService';
+import authService from '../services/authService';
 import { navigateByRole } from '../utils/roleRoutes';
 import LoginForm from './Subcomponents/LoginForm';
 import logo from '../assets/login_logo.webp';
