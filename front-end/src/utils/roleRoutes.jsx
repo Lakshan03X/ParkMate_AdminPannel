@@ -14,7 +14,6 @@ export const ROLE_ROUTES = {
 
 /**
  * Navigate user to appropriate dashboard based on their role
- * @param {string} role - User role from login response
  */
 export const navigateByRole = (role) => {
   const route = ROLE_ROUTES[role];
@@ -32,9 +31,6 @@ export const navigateByRole = (role) => {
 
 /**
  * Check if user has required role for a route
- * @param {string} userRole - Current user's role
- * @param {string|string[]} requiredRole - Required role(s) for the route
- * @returns {boolean}
  */
 export const hasRequiredRole = (userRole, requiredRole) => {
   if (Array.isArray(requiredRole)) {
@@ -45,8 +41,6 @@ export const hasRequiredRole = (userRole, requiredRole) => {
 
 /**
  * Get user-friendly role name
- * @param {string} role - Role constant
- * @returns {string}
  */
 export const getRoleDisplayName = (role) => {
   const displayNames = {
@@ -60,8 +54,6 @@ export const getRoleDisplayName = (role) => {
 
 /**
  * Check if user can access admin features
- * @param {string} role - User role
- * @returns {boolean}
  */
 export const canAccessAdminFeatures = (role) => {
   return role === ROLES.SUPER_ADMIN || role === ROLES.MUNICIPAL_ADMIN;
@@ -69,8 +61,6 @@ export const canAccessAdminFeatures = (role) => {
 
 /**
  * Check if user is Super Admin
- * @param {string} role - User role
- * @returns {boolean}
  */
 export const isSuperAdmin = (role) => {
   return role === ROLES.SUPER_ADMIN;
