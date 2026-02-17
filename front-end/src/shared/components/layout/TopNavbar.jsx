@@ -10,9 +10,12 @@ const TopNavbar = ({ userData, onMobileMenuToggle }) => {
 
   const roleDisplayName = getRoleDisplayName(userData?.role);
 
+  console.log(userData);
+
   // Handle logout
   const handleLogout = () => {
     authService.logout();
+    console.log('User logged out');
   };
 
   // Get user initials for avatar
@@ -129,6 +132,8 @@ const TopNavbar = ({ userData, onMobileMenuToggle }) => {
               <div className="w-9 h-9 bg-gradient-to-br from-[#50B748] to-[#093F86] rounded-xl flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-semibold">
                   {getUserInitials(userData?.name)}
+
+
                 </span>
               </div>
               
