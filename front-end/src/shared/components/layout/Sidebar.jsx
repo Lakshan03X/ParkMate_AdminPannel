@@ -1,38 +1,26 @@
 // Shared sidebar component for all roles
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ChevronDown, LogOut } from 'lucide-react';
-import { getNavigationItems, getRoleDisplayName } from '../../../config/navigationConfig';
-import authService from '../../../services/authService';
+import { getNavigationItems} from '../../../config/navigationConfig';
+// import authService from '../../../services/authService';
 import logo from '../../../assets/login_logo.webp';
 
 const Sidebar = ({ isCollapsed, onToggleCollapse, userData }) => {
   const location = useLocation();
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  // const [showProfileMenu, setShowProfileMenu] = )useState(false);
 
   // Get navigation items based on user role
   const navigationItems = getNavigationItems(userData?.role);
-  const roleDisplayName = getRoleDisplayName(userData?.role);
+  
 
   // Check if route is active
   const isActive = (path) => {
     return location.pathname === path;
   };
 
-  // Handle logout
-  const handleLogout = () => {
-    authService.logout();
-  };
 
-  // Get user initials for avatar
-  const getUserInitials = (name) => {
-    if (!name) return 'U';
-    const names = name.split(' ');
-    if (names.length >= 2) {
-      return `${names[0][0]}${names[1][0]}`.toUpperCase();
-    }
-    return name.substring(0, 2).toUpperCase();
-  };
+
 
   return (
     <aside

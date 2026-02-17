@@ -3,7 +3,7 @@ import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 const SuperAdminDashboard = () => {
-  const { userData } = useOutletContext();
+  const { _userData } = useOutletContext();
 
   return (
     <div>

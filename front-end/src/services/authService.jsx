@@ -5,7 +5,7 @@
  * Set to true for local development with dummy users
  * Set to false when AWS backend is ready
  */
-const USE_MOCK_AUTH = true;
+const USE_MOCK_AUTH = false;
 
 /**
  * Mock user database for development
@@ -35,7 +35,7 @@ const MOCK_USERS = [
 /**
  * API Gateway endpoint configuration
  */
-const API_ENDPOINT = 'https://your-api-id.execute-api.your-region.amazonaws.com/prod';
+const API_ENDPOINT = 'https://oua1bziyn0.execute-api.us-east-1.amazonaws.com/prod';
 
 class AuthService {
   constructor() {
