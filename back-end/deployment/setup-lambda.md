@@ -9,26 +9,38 @@ This guide will help you deploy the login Lambda function for ParkMate Admin Por
 ## 📦 Step 1: Prepare Lambda Deployment Package
 
 ### 1.1 Navigate to Lambda Directory
+
 ```bash
 cd backend/lambda
 ```
 
 ### 1.2 Install Dependencies
+
 ```bash
 npm install
 ```
 
 This will install:
+
 - `bcryptjs` - For password hashing/verification
 - `jsonwebtoken` - For JWT token generation
 
 ### 1.3 Create Deployment Package
+
+**On Linux/Mac:**
+
 ```bash
-# Create a zip file with all code and dependencies
 zip -r function.zip . -x "*.git*" "package.json" "package-lock.json"
 ```
 
+**On Windows (PowerShell):**
+
+```powershell
+Get-ChildItem -Path . -Recurse -Exclude "package.json","package-lock.json" | Where-Object { $_.FullName -notmatch '\.git' } | Compress-Archive -DestinationPath function.zip -Force
+```
+
 Your `function.zip` should contain:
+
 - `loginFunction.js`
 - `node_modules/` (with bcryptjs and jsonwebtoken)
 
@@ -47,6 +59,7 @@ Your `function.zip` should contain:
    - Choose **"Author from scratch"**
 
 3. **Configure Basic Settings**
+
    ```
    Function name: ParkMate-Login
    Runtime: Node.js 18.x (or latest available)
@@ -157,6 +170,7 @@ NODE_ENV = production
 ⚠️ **IMPORTANT:** Change `JWT_SECRET` to a strong random string!
 
 ### Generate a Strong JWT Secret:
+
 ```bash
 # On Linux/Mac
 openssl rand -base64 32
@@ -250,6 +264,8 @@ aws logs tail /aws/lambda/ParkMate-Login --follow
 
 When you make changes to `loginFunction.js`:
 
+**On Linux/Mac:**
+
 ```bash
 # 1. Navigate to lambda directory
 cd backend/lambda
@@ -264,6 +280,25 @@ zip -r function.zip . -x "*.git*" "package.json" "package-lock.json"
 aws lambda update-function-code \
     --function-name ParkMate-Login \
     --zip-file fileb://function.zip \
+    --region YOUR_REGION
+```
+
+**On Windows (PowerShell):**
+
+```powershell
+# 1. Navigate to lambda directory
+cd backend/lambda
+
+# 2. Install/update dependencies if needed
+npm install
+
+# 3. Create new deployment package
+Get-ChildItem -Path . -Recurse -Exclude "package.json","package-lock.json" | Where-Object { $_.FullName -notmatch '\.git' } | Compress-Archive -DestinationPath function.zip -Force
+
+# 4. Update Lambda function
+aws lambda update-function-code `
+    --function-name ParkMate-Login `
+    --zip-file fileb://function.zip `
     --region YOUR_REGION
 ```
 
@@ -286,16 +321,21 @@ aws lambda update-function-code \
 ## 🚨 Common Issues & Solutions
 
 ### Issue: "Cannot find module 'bcryptjs'"
+
 **Solution:** Make sure you ran `npm install` before creating function.zip
 
 ### Issue: "User is not authorized to perform: dynamodb:GetItem"
+
 **Solution:** Attach DynamoDB policy to Lambda execution role
 
 ### Issue: "Task timed out after 3.00 seconds"
+
 **Solution:** Increase timeout to 30 seconds in Configuration
 
 ### Issue: Test returns 401 "Invalid email or password"
-**Solution:** 
+
+**Solution:**
+
 1. Verify email exists in DynamoDB
 2. Verify password hash is correct
 3. Check DynamoDB table name in environment variables
@@ -305,6 +345,7 @@ aws lambda update-function-code \
 ## 📞 Next Steps
 
 After completing Lambda setup:
+
 1. ✅ **Done:** DynamoDB configured
 2. ✅ **Done:** Lambda function deployed
 3. ⏭️ **Next:** Set up API Gateway (see `setup-api-gateway.md`)
@@ -316,40 +357,49 @@ After completing Lambda setup:
 Test these scenarios:
 
 ### ✅ Valid Login
+
 ```json
 {
   "email": "superadmin@parkmate.com",
   "password": "CorrectPassword"
 }
 ```
+
 Expected: 200 with token
 
 ### ❌ Invalid Password
+
 ```json
 {
   "email": "superadmin@parkmate.com",
   "password": "WrongPassword"
 }
 ```
+
 Expected: 401 "Invalid email or password"
 
 ### ❌ Non-existent User
+
 ```json
 {
   "email": "nonexistent@parkmate.com",
   "password": "AnyPassword"
 }
 ```
+
 Expected: 401 "Invalid email or password"
 
 ### ❌ Missing Fields
+
 ```json
 {
   "email": "superadmin@parkmate.com"
 }
 ```
+
 Expected: 400 "Email and password are required"
 
 ### ❌ Inactive User
+
 Create a test user with `"status": "INACTIVE"` and try to login.
 Expected: 403 "Your account has been deactivated"
