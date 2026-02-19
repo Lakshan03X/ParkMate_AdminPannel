@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './components/Login';
 import DashboardLayout from './shared/components/layout/DashboardLayout';
 import authService from './services/authService';
-import SuperAdminDashboard from './pages/SuperAdmin/Dashborad';
+
 import MunicipalAdminDashboard from './pages/MunicipalAdmin/Dashboard';
 import FineCheckerDashboard from './pages/FineChecker/Dashboard';
-
+//super admin routs
+import SuperAdminDashboard from './pages/SuperAdmin/Dashborad';
+import VehicleOwners from './pages/SuperAdmin/VehicleOwners';
 
 
 function App() {
@@ -20,10 +22,10 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           {/* Super Admin Routes */}
           <Route path="super-admin" element={<SuperAdminDashboard />} />
-          {/* Add more Super Admin routes
+          {
           <Route path="super-admin/vehicle-owners" element={<VehicleOwners />} />
-          <Route path="super-admin/inspectors" element={<Inspectors />} />
-          */}
+          //<Route path="super-admin/inspectors" element={<Inspectors />} />
+          }
 
           {/* Municipal Admin Routes */}
           <Route path="municipal" element={<MunicipalAdminDashboard />} />

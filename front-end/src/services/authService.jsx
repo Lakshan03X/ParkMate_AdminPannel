@@ -35,7 +35,7 @@ const MOCK_USERS = [
 /**
  * API Gateway endpoint configuration
  */
-const API_ENDPOINT = 'https://oua1bziyn0.execute-api.us-east-1.amazonaws.com/prod';
+const API_ENDPOINT = import.meta.env.VITE_AWS_API_GATEWAY_URL_LOGIN;
 
 class AuthService {
   constructor() {
