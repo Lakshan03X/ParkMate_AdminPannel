@@ -1,4 +1,4 @@
-// vehicleOwnerService.js - Vehicle Owner CRUD operations (Web Version)
+// vehicleOwnerService.js - Vehicle Owner CRUD operations 
 import awsDynamoService from './awsDynamoService';
 import { awsConfig } from '../awsConfig';
 

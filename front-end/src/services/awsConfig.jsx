@@ -1,5 +1,6 @@
 // awsConfig.js - AWS Configuration for Web
-// Reads from environment variables set in .env file
+//use .env file for get screat value
+
 
 export const awsConfig = {
   apiGatewayUrl: import.meta.env.VITE_AWS_API_GATEWAY_URL,

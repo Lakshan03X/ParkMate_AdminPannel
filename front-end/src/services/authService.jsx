@@ -2,8 +2,6 @@
 
 /**
  * MOCK AUTHENTICATION TOGGLE
- * Set to true for local development with dummy users
- * Set to false when AWS backend is ready
  */
 const USE_MOCK_AUTH = false;
 

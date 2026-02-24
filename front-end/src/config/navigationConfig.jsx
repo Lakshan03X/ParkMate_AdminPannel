@@ -63,26 +63,26 @@ const SUPER_ADMIN_NAV = [
     path: '/dashboard/super-admin/council-officers',
     icon: Users,
   },
-  {
-    name: 'Fine Payments',
-    path: '/dashboard/super-admin/fine-payments',
-    icon: Wallet,
-  },
-  {
-    name: 'Payment History',
-    path: '/dashboard/super-admin/payment-history',
-    icon: History,
-  },
-  {
-    name: 'Parking Revenues',
-    path: '/dashboard/super-admin/parking-revenues',
-    icon: DollarSign,
-  },
-  {
-    name: 'Analytics',
-    path: '/dashboard/super-admin/analytics',
-    icon: FileText,
-  },
+  // {
+  //   name: 'Fine Payments',
+  //   path: '/dashboard/super-admin/fine-payments',
+  //   icon: Wallet,
+  // },
+  // {
+  //   name: 'Payment History',
+  //   path: '/dashboard/super-admin/payment-history',
+  //   icon: History,
+  // },
+  // {
+  //   name: 'Parking Revenues',
+  //   path: '/dashboard/super-admin/parking-revenues',
+  //   icon: DollarSign,
+  // },
+  // {
+  //   name: 'Analytics',
+  //   path: '/dashboard/super-admin/analytics',
+  //   icon: FileText,
+  // },
   {
     name: 'Settings',
     path: '/dashboard/super-admin/settings',
