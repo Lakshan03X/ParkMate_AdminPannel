@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { User, Mail, Lock, KeyRound, ShieldCheck, Save } from 'lucide-react';
 
 const SettingsForm = ({ userData, onSave, isLoading }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: userData?.name || '',
+    email: userData?.email || '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
-
-  // Pre fill profile data when it loads
-  useEffect(() => {
-    if (userData) {
-      setFormData(prev => ({
-        ...prev,
-        name: userData.name || '',
-        email: userData.email || ''
-      }));
-    }
-  }, [userData]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
