@@ -6,9 +6,10 @@ const jwt = require('jsonwebtoken');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 // Environment variables (set these in Lambda configuration)
-const USERS_TABLE = process.env.USERS_TABLE || 'AdminUsers';
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
-const JWT_EXPIRES_IN = '24h'; // Token expiration
+const USERS_TABLE = process.env.USERS_TABLE ;
+const newLocal = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
+const JWT_SECRET = newLocal;
+const JWT_EXPIRES_IN = '24h'; 
 
 /**
  * Lambda handler for user login
@@ -16,7 +17,7 @@ const JWT_EXPIRES_IN = '24h'; // Token expiration
 exports.handler = async (event) => {
   // Set CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': '*', // In production, replace with your frontend domain
+    'Access-Control-Allow-Origin': '*', 
     'Access-Control-Allow-Headers': 'Content-Type,Authorization',
     'Access-Control-Allow-Methods': 'POST,OPTIONS',
     'Content-Type': 'application/json'
@@ -108,10 +109,11 @@ exports.handler = async (event) => {
 
     // Generate JWT token
     const token = jwt.sign(
-      {
+      { 
+        userId: user.email,
         email: user.email,
         role: user.role,
-        name: user.name
+        name: user.name,
       },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }

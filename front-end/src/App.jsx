@@ -11,7 +11,7 @@ import SuperAdminDashboard from './pages/SuperAdmin/Dashborad';
 import VehicleOwners from './pages/SuperAdmin/VehicleOwners';
 import Inspectors from './pages/SuperAdmin/ParkingInspectors';
 import CouncilOfficers from './pages/SuperAdmin/CouncilOfficers';
-
+import Settings from './pages/SuperAdmin/Settings';
 function App() {
   return (
     <Router>
@@ -27,7 +27,8 @@ function App() {
           <><Route path="super-admin/vehicle-owners" element={<VehicleOwners />} />
           
           <Route path="super-admin/inspectors" element={<Inspectors />} />
-          <Route path="super-admin/council-officers" element={<CouncilOfficers />} /></>
+          <Route path="super-admin/council-officers" element={<CouncilOfficers />} />
+          <Route path="super-admin/settings" element={<Settings />} /></>
           }
 
           {/* Municipal Admin Routes */}

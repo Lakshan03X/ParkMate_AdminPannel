@@ -35,6 +35,7 @@ const Login = () => {
       localStorage.setItem('userName', response.name);
       localStorage.setItem('userEmail', response.email);
       
+      
       // Navigate based on role
       navigateByRole(response.role);
       

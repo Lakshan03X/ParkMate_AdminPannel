@@ -1,21 +1,28 @@
 // awsConfig.js - AWS Configuration for Web
-//use .env file for get screat value
-
+// use .env file for secret values
 
 export const awsConfig = {
+  // User API
   apiGatewayUrl: import.meta.env.VITE_AWS_API_GATEWAY_URL,
-                 
-  region: import.meta.env.VITE_AWS_REGION ,
-  usersTable: import.meta.env.VITE_DYNAMODB_USERS_TABLE ,
-  environment: import.meta.env.VITE_ENV 
+  usersTable: import.meta.env.VITE_DYNAMODB_USERS_TABLE,
+
+  // Admin API
+  adminApiGatewayUrl: import.meta.env.VITE_AWS_API_GATEWAY_URL_LOGIN,
+  adminUsersTable: import.meta.env.VITE_DYNAMODB_USERS_TABLE_ADMIN,
+
+  // General environment settings
+  region: import.meta.env.VITE_AWS_REGION,
+  environment: import.meta.env.VITE_ENV,
 };
 
-// Log configuration in development (helps with debugging)
+// Log configuration in development
 if (awsConfig.environment === 'development') {
   console.log('AWS Config loaded:', {
     apiGatewayUrl: awsConfig.apiGatewayUrl,
-    region: awsConfig.region,
     usersTable: awsConfig.usersTable,
+    adminApiGatewayUrl: awsConfig.adminApiGatewayUrl,
+    adminUsersTable: awsConfig.adminUsersTable,
+    region: awsConfig.region,       
   });
 }
 
